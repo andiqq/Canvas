@@ -2,7 +2,7 @@
 
 internal class HomePage : Component
 {
-    private readonly Shadow _myShadow = new Shadow()
+    private readonly Shadow myShadow = new Shadow()
         .Brush(Colors.Black)
         .Offset(20, 20)
         .Radius(40)
@@ -16,7 +16,7 @@ internal class HomePage : Component
                 .OnTick(Invalidate),
             GraphicsView()
                 .Drawable(new ClockView())
-                .Shadow(_myShadow)
+                .Shadow(myShadow)
             );
 }
 
@@ -29,11 +29,11 @@ internal class ClockView : IDrawable
 
 // Translation and scaling
         canvas.Translate(dirtyRect.Center.X, dirtyRect.Center.Y);
-        var scale = Math.Min(dirtyRect.Width / 200f, dirtyRect.Height / 200f);
+        float scale = Math.Min(dirtyRect.Width / 200f, dirtyRect.Height / 200f);
         canvas.Scale(scale, scale);
 
 // Hour and minute marks
-        for (var angle = 0; angle < 360; angle += 6)
+        for (int angle = 0; angle < 360; angle += 6)
         {
             canvas.FillCircle(0, -90, angle % 30 == 0 ? 4 : 2);
             canvas.Rotate(6);
